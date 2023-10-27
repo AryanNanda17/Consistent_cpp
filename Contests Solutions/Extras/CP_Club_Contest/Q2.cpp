@@ -1,6 +1,8 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <numeric>
+#include<queue>
+#include<stack>
 #define ll long long
 using namespace std;
  
@@ -9,17 +11,12 @@ void precal(){
 }
  
 void solve(){
-    int n,p,q;
-    cin>>n>>p>>q;
-    vector<int>v(n);
-    for(int i=0;i<n;i++) cin>>v[i];
-    if(p==0 && q==0){
-        int max = max_element(v.begin(),v.end())-v.begin();
-        int min = min_element(v.begin(),v.end())-v.begin();
-        cout<<v[max]-v[min]<<endl;
-        return;
-    }
-    
+    int n;
+    cin>>n;
+    int a = n*n;
+    int b = 10 + 2*(n-4);
+    cout<<a+b<<endl;
+
 }   
  
 int main(){

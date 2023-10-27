@@ -4,17 +4,17 @@
 #define ll long long
 using namespace std;
  
- 
 void precal(){
 }
 long MaximumSumSubarray(vector<int> v){
     int  n=v.size();
-    int sum =0;
-    int max_sum = 0;
+    ll sum =0;
+    ll max_sum = 0;
     for(int i=0;i<n;i++){
         sum+=v[i];
         if(sum>max_sum)max_sum=sum;
         if(sum<0)sum=0;
+        cout<<"max_sum is :"<<max_sum<<endl;
     }
     return max_sum;
 }
@@ -24,7 +24,7 @@ long suffix_sum(vector<int>v){
     ll max_suffix_sum = INT_MIN;  
     for(int i=n-1;i>=0;i--){
         suffix_sum += v[i];
-        if(suffix_sum>max_suffix_sum)max_suffix_sum=suffix_sum;
+        max_suffix_sum = max(max_suffix_sum,suffix_sum);
     }  
     return max_suffix_sum;
 }
@@ -34,7 +34,7 @@ long prefix_sum(vector<int> v){
     ll max_prefix_sum = INT_MIN;
     for(int i=0;i<n;i++){
         prefix_sum += v[i];
-        if(prefix_sum>max_prefix_sum)max_prefix_sum=prefix_sum;
+        max_prefix_sum = max(max_prefix_sum,prefix_sum);
     }
     return max_prefix_sum;
 }
@@ -46,21 +46,23 @@ void solve(){
     vector<int> v(n);
     for(int i=0;i<n;i++)cin>>v[i];
     ll kadane = MaximumSumSubarray(v);
-    if(k==1)cout<<kadane<<endl;
+    cout<<"kadane :"<<kadane<<endl;
+    if(k==1){
+        cout<<kadane<<endl;
+        return;
+    }
     ll sum =0;
     for(int i=0;i<n;i++)sum+=v[i];
     ll max_prefix_sum = prefix_sum(v);
     ll max_suffix_sum = suffix_sum(v);
-
+    ll final_sum = 0;
     if(sum>=0){
-        long final_sum = max_prefix_sum + max_suffix_sum + (k-2)*sum;
-        cout<<final_sum<<endl;
+        final_sum = max(kadane,max_prefix_sum + max_suffix_sum + ((k-2)*sum));
     }
     else {
-        long final_sum = max_prefix_sum + max_suffix_sum;
-        cout<<final_sum<<endl;
+        final_sum = max(max_prefix_sum + max_suffix_sum,kadane);
     }
-    
+    cout<<final_sum<<endl;
 }   
  
 int main(){
