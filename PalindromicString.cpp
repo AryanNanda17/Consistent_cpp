@@ -5,10 +5,9 @@
 #define ll long long
 using namespace std;
  
- 
 void precal(){
 }
- 
+
 void solve(){
     string s;
     cin>>s;
@@ -29,11 +28,12 @@ void solve(){
     int start = 0;
     int end = n-1;
     for(auto i: mp){
-        if(i.second.size()==1){
-            output[n/2] = i.second[0];
-        }
-        else{
-            int j = 0;
+
+            int j = 0;œ
+            if(i.second.size()%2==1){
+                output[n/2] = i.second[0];
+                j++;
+            }
             while(j<i.second.size()){
                 output[start]=i.second[j];
                 j++;
@@ -41,7 +41,6 @@ void solve(){
                 j++;
                 start ++;
                 end--;
-            }
         }
     }
     for(int i =0;i<n;i++){
@@ -49,7 +48,7 @@ void solve(){
     }
     cout<<endl;
 }   
- 
+
 int main(){
     ios::sync_with_stdio(0);
             cin.tie(0);
@@ -61,6 +60,6 @@ int main(){
             cin>>t;
             for(int i=1;i<=t;i++){
                 solve();
-    }
+            }
     return 0;
 }
