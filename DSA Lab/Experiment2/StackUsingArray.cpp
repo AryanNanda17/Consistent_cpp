@@ -6,7 +6,7 @@ class stackusingarray{
 int *data;
 int nextindex;
 int capacity;
-    public:
+public:
 stackusingarray(int s){
     data=new int[s];
     nextindex=0;
@@ -44,7 +44,7 @@ int top(){
   if(isEmpty()){
         cout<<"Stack is Empty"<<endl;
         return INT_MIN;
-    }
+  }
     return data[nextindex-1];
 }
 

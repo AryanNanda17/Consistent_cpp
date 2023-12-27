@@ -58,7 +58,6 @@ bool isBalanced(string expression)
         return false;
     }
 }
-
 int main(){
     string input;
     cin >> input;

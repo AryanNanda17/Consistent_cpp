@@ -61,43 +61,42 @@ void freeList(Node *node)
     int a = countNodes(node);
     while (a--) 
     { 
+
         cout<<node ->data<<" ";
+        Node* temp = node;
         Node *next = node->next; 
-        delete (node); 
+        temp->next = NULL;
+        delete temp;
         node  = next; 
     } 
 } 
-void deleteEveryNth(Node* head, int n) {
-    if (head == nullptr || n <= 0) return;
-    Node* curr = head;
-    Node* prev = nullptr;
+void deleteEveryNthNode(Node* head, int n){
+    if(head==NULL || n==0)return;
+    Node* cur = head;
+    Node* prev = NULL;
     if(n==1){
         freeList(head);
         return;
     }
-    while (curr->next != curr) {
+    while(cur->next != cur){
         for (int i = 0; i < n - 1; ++i) {
-            prev = curr;
-            curr = curr->next;
+            prev = cur;
+            cur = cur->next;
         }
-        prev->next = curr->next;
-        Node* temp = curr;
-        curr = curr->next;
-        temp->next = nullptr;
-        cout << temp->data << " ";
+        prev->next = cur->next;
+        Node* temp = cur;
+        cur = cur->next;
+        temp->next = NULL;
+        cout<<temp->data<<" ";
         delete temp;
-        if (curr == head) {
-            head = prev->next;
-        }
     }
-    cout << curr->data << endl;
-    delete curr;
+    cout << cur->data << endl;
+    delete cur;
 }
-
 int main() {
     Node* head = takeInput();
     int n;
     cin>>n;
-    deleteEveryNth(head, n);
+    deleteEveryNthNode(head, n);
     return 0;
 }
