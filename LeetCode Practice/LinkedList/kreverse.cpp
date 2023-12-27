@@ -20,7 +20,7 @@ Pair reverse(ListNode* head){
 class Solution {
 public:
 
-    ListListNode* reverseKGroup(ListListNode* head, int k) {
+    ListNode* reverseKGroup(ListNode* head, int k) {
         if(head==NULL || head ->next==NULL || k==0 || k==1){
         return head;
     }
