@@ -1,7 +1,6 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-
 class BinaryTreeNode {
    public:
     int data;
@@ -92,11 +91,39 @@ BinaryTreeNode* minValueNode(BinaryTreeNode* node) {
     }
     return current;
 }
-
+BinaryTreeNode* maxValueNode(BinaryTreeNode* node) {
+    BinaryTreeNode* current = node;
+    while (current && current->right != NULL) {
+        current = current->right;
+    }
+    return current;
+}
+BinaryTreeNode* inorderPredecessor(BinaryTreeNode* root, int value) {
+    BinaryTreeNode* current = root;
+    BinaryTreeNode* successor = NULL;
+    while (current != NULL && current->data != value) {
+        if (value < current->data) {
+            current = current->left;
+        } 
+        else {
+            successor = current;
+            current = current->right;
+        }
+    }
+    if (current == NULL) {
+        return NULL;
+    }
+    if (current->left != NULL) {
+        return maxValueNode(current->left);
+    } 
+    else {
+        return successor;
+    }
+}
 BinaryTreeNode* inorderSuccessor(BinaryTreeNode* root, int value) {
     BinaryTreeNode* current = root;
-    BinaryTreeNode* successor = nullptr;
-    while (current != nullptr && current->data != value) {
+    BinaryTreeNode* successor = NULL;
+    while (current != NULL && current->data != value) {
         if (value < current->data) {
             successor = current;
             current = current->left;
@@ -105,10 +132,10 @@ BinaryTreeNode* inorderSuccessor(BinaryTreeNode* root, int value) {
             current = current->right;
         }
     }
-    if (current == nullptr) {
-        return nullptr;
+    if (current == NULL) {
+        return NULL;
     }
-    if (current->right != nullptr) {
+    if (current->right != NULL) {
         return minValueNode(current->right);
     } 
     else {
@@ -172,29 +199,29 @@ bool searchInBST(BinaryTreeNode *root , int k) {
 
 int main() {
     BinaryTreeNode *root = takeInput();
-    InOrderPrintBST(root);
-    cout<<"Check if the binary tree is binary Search Tree Or Not"<<endl;
-    cout << (isBST(root) ? "true" : "false");
-    if(isBST(root)==0){
-        return 0;
-    }
-    int k;
-    cout<<endl;
-    cout<<"Enter the number you want to search for "<<endl;
-    cin >> k;
-    cout << ((searchInBST(root, k)) ? "true" : "false")<<endl;
+    // InOrderPrintBST(root);
+    // cout<<"Check if the binary tree is binary Search Tree Or Not"<<endl;
+    // cout << (isBST(root) ? "true" : "false");
+    // if(isBST(root)==0){
+    //     return 0;
+    // }
+    // int k;
+    // cout<<endl;
+    // cout<<"Enter the number you want to search for "<<endl;
+    // cin >> k;
+    // cout << ((searchInBST(root, k)) ? "true" : "false")<<endl;
     int a;
     cout<<"Enter the number whose Inorder Sucessor you want "<<endl;
     cin>>a;
-    cout<<inorderSuccessor(root,a)->data<<endl;
-    int n;
-    cout<<"Enter the number you want to delete "<<endl;
-    cin>>n;
-    root = deleteData(n,root);
-    InOrderPrintBST(root);
-    cout<<"Check if the binary tree is binary Search Tree Or Not"<<endl;
-    cout << (isBST(root) ? "true" : "false");
-    delete root;
+    cout<<inorderPredecessor(root,a)->data<<endl;
+    // int n;
+    // cout<<"Enter the number you want to delete "<<endl;
+    // cin>>n;
+    // root = deleteData(n,root);
+    // InOrderPrintBST(root);
+    // cout<<"Check if the binary tree is binary Search Tree Or Not"<<endl;
+    // cout << (isBST(root) ? "true" : "false");
+    // delete root;
 }
 
 // ----------------------------- Sample Test Case-------------------------------

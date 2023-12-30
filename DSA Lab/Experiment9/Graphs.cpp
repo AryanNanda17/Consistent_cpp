@@ -1,14 +1,12 @@
 #include <iostream>
 #include<queue>
 using namespace std;
-
 class ListNode {
 public:
     int data;
     ListNode* next;
     ListNode(int val) : data(val), next(nullptr) {}
 };
-
 class List {
 private:
     ListNode* head;
