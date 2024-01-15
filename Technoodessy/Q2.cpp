@@ -8,43 +8,46 @@
 using namespace std;
 void precal(){
 }
- 
-void solve(){
-    ll n,d;
-    cin>>n>>d;
-    vector<ll>v(n);
-    for(int i=0;i<n;i++)cin>>v[i];
-    sort(v.begin(),v.end());
-    int j = 0;
-    int ans = 0;
-    for(int i= n-1;i>=0;i--){
-        int total = v[i];
-        if(v[i]>d){
-            ans++;continue;
-        }
-        while(j<i){ 
-            total+=v[i];
-            if(total>d){
-                j++;
-                ans++;
-                break;
+bool secret(const string& sub) {
+    int x = 0;
+    vector<int> freq(26, 0);
+
+    for (char c : sub) {
+        freq[c - 'a']++;
+    }
+
+    for (int a : freq) {
+        if (a % 2 == 1) {
+            x++;
+            if (x > 1) {
+                return false;
             }
-            j++;
         }
     }
-    cout<<ans<<endl;
+    return true;
+}
+void solve(){
+    string s;
+    cin>>s;
+    int ans = 0;
+    int n = s.length();
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (secret(s.substr(i, j - i + 1))) {
+                ans++;
+            }
+        }
+    }
+    cout << ans << endl;
 }   
  
 int main(){
-
     ios::sync_with_stdio(0);
             cin.tie(0);
             cout.tie(0);
             cout<<fixed;
-            // cout<<setprecision(10);
             precal();
             int t=1;
-            // cin>>t;
             for(int i=1;i<=t;i++){
                 solve();
     }

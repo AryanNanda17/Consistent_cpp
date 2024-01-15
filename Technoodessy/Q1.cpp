@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <numeric>
 #include<map>
 #include<algorithm>
@@ -8,35 +8,31 @@
 using namespace std;
 void precal(){
 }
- 
 void solve(){
-    long n,k;
+    ll n,k;
     cin>>n>>k;
-    vector<int>v(n);
-    long ans = 0;
+    vector<ll>v(n);
     for(int i=0;i<n;i++)cin>>v[i];
-    sort(v.begin(),v.end());
-    int i = 0;
-    int j = 1;
-    while(j<n){
-        if(abs(v[i]-v[j])>=k){
-            if(i==j){
-                j++;
-                continue;
-            }
-            ans = ans + n-j;
-            i++;
+    if (k>0){
+        ll max=*max_element(v.begin(),v.end());
+        for(int i=0;i<n;i++){
+            v[i]=max-v[i];
         }
-        else j++;
+        max=*max_element(v.begin(),v.end());
+        k--;
+        if(k%2!=0 && k>0){
+          for(int i=0;i<n;i++){
+            v[i]=max-v[i];
+          }
+        }
     }
-    cout<<ans<<endl;
+    for(int i=0;i<n;i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
 }   
  
 int main(){
-    // #ifndef ONLINE_JUDGE
-    //         freopen("input.txt","r",stdin);
-    //         freopen("output.txt","w",stdout);
-    // #endif
     ios::sync_with_stdio(0);
             cin.tie(0);
             cout.tie(0);
@@ -44,7 +40,7 @@ int main(){
             // cout<<setprecision(10);
             precal();
             int t=1;
-            // cin>>t;
+            cin>>t;
             for(int i=1;i<=t;i++){
                 solve();
     }

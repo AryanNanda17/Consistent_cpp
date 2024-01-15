@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <numeric>
 #include<map>
 #include<algorithm>
@@ -10,10 +10,10 @@ void precal(){
 }
  
 void solve(){
-    int n;
-    cin>>n;
-    vector<int>v(n);
-    for(int i=0;i<n;i++)cin>>v[i];
+    // int n;
+    // cin>>n;
+    // vector<int>v(n);
+    // for(int i=0;i<n;i++)cin>>v[i];
     
 }   
  

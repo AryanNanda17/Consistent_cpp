@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <numeric>
 #include<map>
 #include<algorithm>
@@ -12,29 +12,19 @@ void precal(){
 void solve(){
     int n;
     cin>>n;
-    string s;
-    cin>>s;
-    int ham = 0;
+    vector<int>v(n);
+    for(int i=0;i<n;i++)cin>>v[i];
+    int count = 0;
     for(int i =0;i<n;i++){
-        if(s[i]=='H'){
-            ham++;
-        }
+        if(v[i]%2==1)count++;
     }
-    int tig = 0;
-    int swapp = INT_MAX;
-    for(int i = 0;i<n;i++){
-        if(i==0){
-            for(int j = 0;j<ham;j++){
-                if(s[j]=='T')tig++;
-            }
-        }
-        else{
-            if(s[i-1]=='T')tig--;
-            if(s[(ham+i-1)%n]=='T')tig++;
-        }
-        swapp=min(swapp,tig);
-    }
-    cout<<swapp;
+   if(count%2==0){
+    cout<<"YES";
+   }
+   else{
+    cout<<"NO";
+   }
+    cout<<endl;
 }   
  
 int main(){
@@ -45,7 +35,7 @@ int main(){
             // cout<<setprecision(10);
             precal();
             int t=1;
-            // cin>>t;
+            cin>>t;
             for(int i=1;i<=t;i++){
                 solve();
     }
