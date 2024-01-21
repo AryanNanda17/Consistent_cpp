@@ -24,7 +24,6 @@ void solve(){
     else{
         cout<< (n%2)<<endl;
     }
-
 }   
  
 int main(){
